@@ -1,2 +1,4 @@
 *.jpg
 index.old.php
+config.php
+*~

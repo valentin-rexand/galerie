@@ -1,0 +1,2 @@
+importer 3wa.sql dans phpmyadmin.
+Changer les informations de connexion de config.php.exemple et renommer en config.php

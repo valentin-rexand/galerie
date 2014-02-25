@@ -1,7 +1,7 @@
 <?php
 
 	require_once('function.inc.php');
-	require_once('config.inc.php');
+	require_once('config.php');
 
 	$dossier=$config['dossier'];
 	$images=scandir($dossier); //$images est un tableau
