@@ -2,7 +2,6 @@
 
 	require_once('function.inc.php');
 	require_once('config.php');
-	
 
 	$sql='SELECT COUNT(id) AS count FROM galerie_php';
 	$result=$db->query($sql);
@@ -30,7 +29,6 @@
 	echo '<div class="image">'.PHP_EOL;
 	foreach ($resultat as $ligne) {
 		echo '<a href="image.php?id='.$ligne['id'].'"><img src="images/'.$ligne['nom_fichier'].'" alt="'.$ligne['nom'].'" title="'.$ligne['nom'].'" width="150"/></a>';
-		//echo '<div class="hover"><p>'.$ligne['nom'].'</p><p>'.$ligne['auteur'].'</p><p>'.$ligne['date'].'</p></div>';
 	}
 	echo '</div>'.PHP_EOL;
 	echo '</div>'.PHP_EOL;
