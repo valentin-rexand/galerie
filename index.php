@@ -20,6 +20,13 @@
 	$titre='accueil - page'.($numpage+1);
 	require_once('header.inc.php');
 
+	if(!isset($_SESSION['admin'])){
+		echo'<p><a href="connect.php" class="buttonco">Se connecter</a></p>';
+	} else {
+		echo'<p><a href="deco.php?deco=1" class="buttonco">Se déconnecter</a></p>';
+		echo '<p><a href="form_img.php">Ajouter une image</a></p>';
+	}
+
 	
 	echo '<div class="gallery">'.PHP_EOL;
 

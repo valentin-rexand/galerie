@@ -30,3 +30,7 @@ p a:visited {
 .gallery p{
     font-size: 0.7em;
 }
+.star{
+    color: red;
+    font-size: 0.7em;
+}
