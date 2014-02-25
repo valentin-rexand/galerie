@@ -29,8 +29,8 @@
 
 	echo '<div class="image">'.PHP_EOL;
 	foreach ($resultat as $ligne) {
-		echo '<a href="image.php?name='.$ligne['nom_fichier'].'"><img src="images/'.$ligne['nom_fichier'].'" alt="'.$ligne['nom'].'" width="150"/></a>';
-		echo '<div class="hover"><p>'.$ligne['nom'].'</p><p>'.$ligne['auteur'].'</p><p>'.$ligne['date'].'</p></div>';
+		echo '<a href="image.php?id='.$ligne['id'].'"><img src="images/'.$ligne['nom_fichier'].'" alt="'.$ligne['nom'].'" title="'.$ligne['nom'].'" width="150"/></a>';
+		//echo '<div class="hover"><p>'.$ligne['nom'].'</p><p>'.$ligne['auteur'].'</p><p>'.$ligne['date'].'</p></div>';
 	}
 	echo '</div>'.PHP_EOL;
 	echo '</div>'.PHP_EOL;

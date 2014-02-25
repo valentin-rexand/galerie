@@ -4,9 +4,9 @@
 	require_once('header.inc.php');
 	require_once('config.php');
 
-	if(isset($_GET['name'])){
-			$chars=htmlspecialchars($_GET['name']);
-			$sql="SELECT `date`, auteur, nom, description, nom_fichier FROM galerie_php WHERE nom_fichier=".$db->quote($chars);
+	if(isset($_GET['id'])){
+			$id=htmlspecialchars($_GET['id']);
+			$sql="SELECT `date`, auteur, nom, description, nom_fichier FROM galerie_php WHERE id=".$db->quote($id);
 			$resultat=$db->query($sql);
 			foreach ($resultat as $ligne) {
 				echo '<h2>'.$ligne['nom'].'</h2>';
