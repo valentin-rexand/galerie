@@ -4,7 +4,7 @@
     margin: 0 auto;
 }
 
-.gallery .image {
+.gallery .image img{
     float: left;
     width: 150px;
     height: 150px;
@@ -13,9 +13,9 @@
 }
 
 .gallery .image a {
-    display: block;
-    height: 150px;
-    width: 150px;
+    display: inline-block;
+    height: 172px;
+    width: 172px;
 }
 p a {
 	text-decoration: none;
@@ -26,4 +26,7 @@ p a:visited {
 .clear{
     clear: both;
     text-align: center;
+}
+.gallery p{
+    font-size: 0.7em;
 }

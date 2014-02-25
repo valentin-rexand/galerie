@@ -4,9 +4,9 @@
 	$config['img_par_page']=5;
 	$config['dossier']='images/';
 
-	$sdn='mysql:dbname=3wa;host=localhost';
-	$username='3wa';
-	$password='berezina';
+	$sdn='mysql:dbname=nom utilisateur a changer;host=localhost';
+	$username='nom utilisateur a changer';
+	$password='password a changer';
 	try{
 		$db= new PDO($sdn, $username, $password);
 		$db->exec('SET CHARACTER SET UTF8');//pour afficher correctement les accents et autres
