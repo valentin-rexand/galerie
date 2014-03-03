@@ -27,3 +27,9 @@ p a:visited {
     clear: both;
     text-align: center;
 }
+.date_img{
+    width: 300px;
+    height: 100px;
+    margin: 20px auto 0 auto;
+    text-align: center;
+}

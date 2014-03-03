@@ -41,5 +41,12 @@
 		echo '<a href="index.php?page='.($numpage+2).'">Suivant</a>'.PHP_EOL;
 	}
 	echo '</p>'.PHP_EOL;
+?>
+	<div class="date_img">
+		<p>Date de l'image la plus récente :</p>
+		<button id="mon_bouton">clic</button>
+	</div>
+
+<?php
 
 	require_once('footer.inc.php');

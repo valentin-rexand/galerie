@@ -1,0 +1,12 @@
+V3.0:
+	
+Créer une branche de Git pour travailler la V3.0
+
+*Table mysql
+exporter la structure sql
+
+créer une connexion admin
+	-session_start();
+
+créer une page pour insérer des images (et suppr)
+	-accessible que pr admin
