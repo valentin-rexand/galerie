@@ -4,12 +4,6 @@
 	$config['img_par_page']=5;
 	$config['dossier']='images/';
 
-	$sdn='mysql:dbname=nom utilisateur a changer;host=localhost';
-	$username='nom utilisateur a changer';
-	$password='password a changer';
-	try{
-		$db= new PDO($sdn, $username, $password);
-		$db->exec('SET CHARACTER SET UTF8');//pour afficher correctement les accents et autres
-	} catch (Exception $e){
-		die('Impossible de se connecter');
-	}
+	$config['dsn']='mysql:dbname=nom utilisateur a changer;host=localhost';
+	$config['username']='nom utilisateur a changer';
+	$config['password']='password a changer';

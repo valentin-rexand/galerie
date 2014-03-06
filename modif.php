@@ -3,6 +3,7 @@
 	$titre='image';
 	require_once('header.inc.php');
 	require_once('config.php');
+	require_once('connexion.php');
 
 	if(isset($_GET['id'])){
 			$id=$db->quote($_GET['id']);

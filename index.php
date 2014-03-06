@@ -2,6 +2,7 @@
 
 	require_once('function.inc.php');
 	require_once('config.php');
+	require_once('connexion.php');
 
 	$sql='SELECT COUNT(id) AS count FROM galerie_php';
 	$result=$db->query($sql);

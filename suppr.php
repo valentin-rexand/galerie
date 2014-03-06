@@ -2,6 +2,7 @@
 	$titre='suppression';
 	require_once('header.inc.php');
 	require_once('config.php');
+	require_once('connexion.php');
 
 	if (isset($_GET['id'])){
 		if(isset($_GET['confirmation'])){
