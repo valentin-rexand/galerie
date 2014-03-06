@@ -4,6 +4,10 @@
 	require_once('config.php');
 	require_once('connexion.php');
 
+	if(isset($_GET['page'])){
+		$page=htmlspecialchars($_GET['page']);
+	}
+
 	if(isset($_GET['id'])){
 		$id=htmlspecialchars($_GET['id']);
 		$sql="SELECT * FROM galerie_php WHERE id=".$db->quote($id);
@@ -21,6 +25,6 @@
 		echo'<p><a href="suppr.php?id='.$id.'">Supprimer</a></p>';
 	}
 
-	echo '<p><a href="index.php">&lt;&ndash; Retour galerie</a></p>';
+	echo '<p><a href="index.php?page='.$page.'">&lt;&ndash; Retour galerie</a></p>';
 
 	require_once('footer.inc.php');

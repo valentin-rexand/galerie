@@ -36,7 +36,7 @@
 
 	echo '<div class="image">'.PHP_EOL;
 	foreach ($resultat as $ligne) {
-		echo '<a href="image.php?id='.$ligne['id'].'"><img src="images/'.$ligne['nom_fichier'].'" alt="'.$ligne['nom'].'" title="'.$ligne['nom'].'" width="150"/></a>';
+		echo '<a href="image.php?id='.$ligne['id'].'&page='.$_GET['page'].'"><img src="images/'.$ligne['nom_fichier'].'" alt="'.$ligne['nom'].'" title="'.$ligne['nom'].'" width="150"/></a>';
 	}
 	echo '</div>'.PHP_EOL;
 	echo '</div>'.PHP_EOL;
