@@ -17,6 +17,7 @@
 
 	if(isset($_SESSION['admin'])){
 		echo'<p><a href="modif.php?id='.$id.'">Modifier</a></p>';
+		echo'<p><a href="suppr.php?id='.$id.'">Supprimer</a></p>';
 	}
 
 	echo '<p><a href="index.php">&lt;&ndash; Retour galerie</a></p>';

@@ -14,9 +14,6 @@
 				$ligne_description=$ligne ['description'];
 			}
 		}
-
-		
-
 	?>
 
 
@@ -29,8 +26,6 @@
 		<p><textarea name="description" id="description" cols="100" rows="20"><?php if(isset($_POST['description'])){ $description=htmlspecialchars($_POST['description']);echo $description;}else{ echo '';}?></textarea></p>
 		<p><input type="submit" value="valider"></p>
 	</form>
-
-
 
 	<?php
 
@@ -46,7 +41,8 @@
 			echo '<p>Veuillez modifier les champs<span class="star"> *</span></p>';
 		}
 
-
+	$id=htmlspecialchars($_GET['id']);
+	echo '<p><a href="image.php?id='.$id.'">Annuler</a></p>';
 	echo '<p><a href="index.php">&lt;&ndash; Retour galerie</a></p>';
 
 	require_once('footer.inc.php');
