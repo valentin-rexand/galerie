@@ -10,7 +10,7 @@
 	if(isset($_SESSION['admin'])){
 		echo '<p>Bonjour Admin<br/><a href="index.php">Accueil</a></p>';
 	} else {
-		if(isset($_POST['mdp']) && ($_POST['mdp']==$adminpass)){
+		if(isset($_POST['mdp']) && ($_POST['mdp']==$config['adminpass'])){
 			$_SESSION['admin']=true;
 			echo '<p>Bonjour Admin<br/><a href="index.php">Accueil</a></p>';
 		} else {

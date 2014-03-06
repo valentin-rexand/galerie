@@ -4,6 +4,10 @@
 	require_once('config.php');
 	require_once('connexion.php');
 
+	if(isset($_GET['page'])){
+		$page=htmlspecialchars($_GET['page']);
+	}
+
 	if (isset($_GET['id'])){
 		if(isset($_GET['confirmation'])){
 			$id=$db->quote($_GET['id']);
@@ -11,13 +15,13 @@
 			$confirm=$db->exec($supp);
 			if($confirm){
 				echo '<p>L\'article a bien été supprimé</p>';
-				echo '<p><a href="index.php">retour galerie</a></p>';
+				echo '<p><a href="index.php?page='.$page.'">retour galerie</a></p>';
 			}
 		}else{
 			$id=htmlspecialchars($_GET['id']);
 			echo '<p>Voulez-vous supprimer?</p>';
-			echo '<p><a href="suppr.php?id='.$id.'&confirmation=1">oui</a></p>';
-			echo '<p><a href="image.php?id='.$id.'">non</a></p>';
+			echo '<p><a href="suppr.php?id='.$id.'&page='.$page.'&confirmation=1">oui</a></p>';
+			echo '<p><a href="image.php?id='.$id.'&page='.$page.'">non</a></p>';
 		}
 	}
 

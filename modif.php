@@ -43,7 +43,10 @@
 		}
 
 	$id=htmlspecialchars($_GET['id']);
-	echo '<p><a href="image.php?id='.$id.'">Annuler</a></p>';
-	echo '<p><a href="index.php">&lt;&ndash; Retour galerie</a></p>';
+	if(isset($_GET['page'])){
+		$page=htmlspecialchars($_GET['page']);
+	}
+		echo '<p><a href="image.php?id='.$id.'&page='.$page.'">Annuler</a></p>';
+		echo '<p><a href="index.php?page='.$page.'">&lt;&ndash; Retour galerie</a></p>';
 
 	require_once('footer.inc.php');

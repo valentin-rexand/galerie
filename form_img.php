@@ -19,19 +19,28 @@
 	</form>
 
 <?php
-	if(isset($_POST['nom']) && (!empty($_POST['nom'])) && (isset($_POST['auteur'])) && (!empty($_POST['auteur'])) && (isset($_POST['description'])) && (!empty($_POST['description'])) && (isset($_FILES['image'])) && (!empty($_FILES['image']['name']))){
+	if(isset($_POST['nom']) && (!empty($_POST['nom'])) && (isset($_POST['auteur']))
+	 && (!empty($_POST['auteur'])) && (isset($_POST['description'])) && 
+	 (!empty($_POST['description'])) && (isset($_FILES['image'])) && 
+	 (!empty($_FILES['image']['name']))){
 		
 		$nom=$db->quote($_POST['nom']);
 		$auteur=$db->quote($_POST['auteur']);
 		$descript=$db->quote($_POST['description']);
 		$files=$db->quote($_FILES['image']['name']);
 
-		$query="INSERT INTO galerie_php (nom, auteur, description, `date`, nom_fichier) 
-		VALUES (".$nom.",".$auteur.",".$descript.",NOW(),".$files.")";
-		$resultat=$db->exec($query);
+		if(strstr($_FILES['image']['type'], 'jpg') || (strstr($_FILES['image']['type'], 'jpeg'))
+			 || (strstr($_FILES['image']['type'], 'png')) || (strstr($_FILES['image']['type'], 'gif'))
+			 || (strstr($_FILES['image']['type'], 'tiff'))){
+			$query="INSERT INTO galerie_php (nom, auteur, description, `date`, nom_fichier) 
+			VALUES (".$nom.",".$auteur.",".$descript.",NOW(),".$files.")";
+			$resultat=$db->exec($query);
 
-		move_uploaded_file($_FILES['image']['tmp_name'], "images/".$_FILES['image']['name']);
-		echo '<p>L\'image a été envoyée</p>';
+			move_uploaded_file($_FILES['image']['tmp_name'], "images/".$_FILES['image']['name']);
+			echo '<p>L\'image a été envoyée</p>';
+		} else {
+			echo '<p>Le format de l\'image est incorrect</p>';
+		}
 	} else {
 		echo '<p>Veuillez remplir les champs<span class="star"> *</span></p>';
 	}

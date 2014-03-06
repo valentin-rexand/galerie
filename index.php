@@ -36,7 +36,7 @@
 
 	echo '<div class="image">'.PHP_EOL;
 	foreach ($resultat as $ligne) {
-		echo '<a href="image.php?id='.$ligne['id'].'&page='.$_GET['page'].'"><img src="images/'.$ligne['nom_fichier'].'" alt="'.$ligne['nom'].'" title="'.$ligne['nom'].'" width="150"/></a>';
+		echo '<a href="image.php?id='.$ligne['id'].'&page='.($numpage+1).'"><img src="images/'.$ligne['nom_fichier'].'" alt="'.$ligne['nom'].'" title="'.$ligne['nom'].'" width="150"/></a>';
 	}
 	echo '</div>'.PHP_EOL;
 	echo '</div>'.PHP_EOL;
@@ -44,10 +44,12 @@
 
 	echo '<p class="clear">'.PHP_EOL;
 	if ($numpage>0){//($numpage+1)-1 donc $numpage (ce que croit l'utilisateur $numpage+1 et la page réelle -1)
+		echo '<a href="index.php?page=1"><-first</a>'.PHP_EOL;
 		echo '<a href="index.php?page='.$numpage.'">Précédent</a>'.PHP_EOL;
 	}
 	if($numpage<$nbrpage-1){//$numpage+1 pr ce que l'on fait mais comme utilisateur sur page +1 ça donne +2
 		echo '<a href="index.php?page='.($numpage+2).'">Suivant</a>'.PHP_EOL;
+		echo '<a href="index.php?page='.$nbrpage.'">last-></a>'.PHP_EOL;
 	}
 	echo '</p>'.PHP_EOL;
 
