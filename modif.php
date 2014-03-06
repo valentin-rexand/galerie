@@ -33,7 +33,7 @@
 
 
 	<?php
-	/*	---WIP---	*/
+
 		if(isset($_POST['nom']) && (!empty($_POST['nom'])) && (isset($_POST['auteur'])) && (!empty($_POST['auteur'])) && (isset($_POST['description'])) && (!empty($_POST['description']))){
 
 			//modification du contenu par l'utilisateur

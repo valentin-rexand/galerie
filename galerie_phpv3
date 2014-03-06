@@ -1,0 +1,24 @@
+V3.0:
+	
+Créer une branche de Git pour travailler la V3.0
+
+*Table mysql
+*exporter la structure sql
+
+*afficher les images et pagination a partir de pdo
+*script php pour insérer toutes les images dans la base de données
+
+
+*créer une connexion admin
+	-session_start();
+
+créer une page pour insérer des images (et suppr)
+	*-accessible que pr admin
+	*-bouton ajouter img
+		*->page formulaire pr l'upload de l'image
+		*->vérif des champs
+		->vérif de l'extention du fichier upload et son type (in_array)
+		->intégrer l'upload a PDO
+	Page modif (admin) pr modif titre, auteur ou description d'une image
+	Suppression d'image (admin) : sur la page d'une image, bouton pr suppr
+		->suppr la fichier (unlink($fichier)) puis une requète DELETE  
