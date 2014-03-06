@@ -28,7 +28,7 @@
 		echo '<p><a href="form_img.php">Ajouter une image</a></p>';
 	}
 
-	
+
 	echo '<div class="gallery">'.PHP_EOL;
 
 	$query='SELECT * FROM galerie_php ORDER BY `date` DESC LIMIT '.($numpage*$config['img_par_page']).','.$config['img_par_page'];
@@ -44,12 +44,12 @@
 
 	echo '<p class="clear">'.PHP_EOL;
 	if ($numpage>0){//($numpage+1)-1 donc $numpage (ce que croit l'utilisateur $numpage+1 et la page réelle -1)
-		echo '<a href="index.php?page=1"><-first</a>'.PHP_EOL;
-		echo '<a href="index.php?page='.$numpage.'">Précédent</a>'.PHP_EOL;
+		echo '<a href="index.php?page=1" class="first"><- first</a>'.PHP_EOL;
+		echo '<a href="index.php?page='.$numpage.'" class="previous">Précédent</a>'.PHP_EOL;
 	}
 	if($numpage<$nbrpage-1){//$numpage+1 pr ce que l'on fait mais comme utilisateur sur page +1 ça donne +2
-		echo '<a href="index.php?page='.($numpage+2).'">Suivant</a>'.PHP_EOL;
-		echo '<a href="index.php?page='.$nbrpage.'">last-></a>'.PHP_EOL;
+		echo '<a href="index.php?page='.($numpage+2).'" class="next">Suivant</a>'.PHP_EOL;
+		echo '<a href="index.php?page='.$nbrpage.'" class="last">last -></a>'.PHP_EOL;
 	}
 	echo '</p>'.PHP_EOL;
 

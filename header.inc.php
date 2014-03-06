@@ -9,4 +9,5 @@ session_start();
     <meta charset="utf-8" />
 </head>
 <body>
-	<h1>Ma galerie - <?php echo $titre;?></h1>
+	<div id="wrapper">
+		<h1>Ma galerie - <?php echo $titre;?></h1>

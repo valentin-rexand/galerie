@@ -4,7 +4,6 @@
 	require_once('header.inc.php');
 	require_once('config.php');
 	require_once('connexion.php');
-
 ?>
 
 	<form enctype="multipart/form-data" method="post">
@@ -29,9 +28,9 @@
 		$descript=$db->quote($_POST['description']);
 		$files=$db->quote($_FILES['image']['name']);
 
-		if(strstr($_FILES['image']['type'], 'jpg') || (strstr($_FILES['image']['type'], 'jpeg'))
-			 || (strstr($_FILES['image']['type'], 'png')) || (strstr($_FILES['image']['type'], 'gif'))
-			 || (strstr($_FILES['image']['type'], 'tiff'))){
+		// vérification du format de l'image soumise
+		if((strstr($_FILES['image']['type'], 'jpg') || (strstr($_FILES['image']['type'], 'jpeg')) || (strstr($_FILES['image']['type'], 'png')) || (strstr($_FILES['image']['type'], 'gif')) || (strstr($_FILES['image']['type'], 'tiff'))) && (stripos($_FILES['image']['name'], ".php")===false)){
+
 			$query="INSERT INTO galerie_php (nom, auteur, description, `date`, nom_fichier) 
 			VALUES (".$nom.",".$auteur.",".$descript.",NOW(),".$files.")";
 			$resultat=$db->exec($query);
@@ -44,7 +43,6 @@
 	} else {
 		echo '<p>Veuillez remplir les champs<span class="star"> *</span></p>';
 	}
-
 
 	echo '<p><a href="index.php">accueil</a></p>';
 
