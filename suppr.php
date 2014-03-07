@@ -11,11 +11,19 @@
 		if (isset($_GET['id'])){
 			if(isset($_GET['confirmation'])){
 				$id=$db->quote($_GET['id']);
-				$supp="DELETE FROM galerie_php WHERE id=".$id."LIMIT 1";
-				$confirm=$db->exec($supp);
-				if($confirm){
-					echo '<p>L\'article a bien été supprimé</p>';
-					echo '<p><a href="index.php?page='.$page.'">retour galerie</a></p>';
+				$query="SELECT nom_fichier FROM galerie_php where id=".$id;
+				$result=$db->query($query);
+				$nom_fichier=$result->fetchColumn();
+				if(file_exists("images/".$nom_fichier)){
+					unlink("images/".$nom_fichier);
+					$supp="DELETE FROM galerie_php WHERE id=".$id."LIMIT 1";
+					$confirm=$db->exec($supp);
+					if($confirm){
+						echo '<p>L\'article a bien été supprimé</p>';
+						echo '<p><a href="index.php?page='.$page.'">retour galerie</a></p>';
+					}
+				} else {
+					echo '<p>le fichier n\'existe pas !</p>';
 				}
 			}else{
 				$id=htmlspecialchars($_GET['id']);

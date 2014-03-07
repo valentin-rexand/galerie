@@ -24,10 +24,10 @@
 		 (!empty($_POST['description'])) && (isset($_FILES['image'])) && 
 		 (!empty($_FILES['image']['name']))){
 			
-			$nom=$db->quote($_POST['nom']);
-			$auteur=$db->quote($_POST['auteur']);
-			$descript=$db->quote($_POST['description']);
-			$files=$db->quote($_FILES['image']['name']);
+			$nom=$db->quote(htmlspecialchars($_POST['nom']));
+			$auteur=$db->quote(htmlspecialchars($_POST['auteur']));
+			$descript=$db->quote(htmlspecialchars($_POST['description']));
+			$files=$db->quote(htmlspecialchars($_FILES['image']['name']));
 
 			// vérification du format de l'image soumise
 			if((stripos($_FILES['image']['type'], 'jpg') || (stripos($_FILES['image']['type'], 'jpeg')) || (stripos($_FILES['image']['type'], 'png')) || (stripos($_FILES['image']['type'], 'gif')) || (stripos($_FILES['image']['type'], 'tiff'))) && (stripos($_FILES['image']['name'], ".php")===false)){
