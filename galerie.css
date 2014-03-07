@@ -78,6 +78,9 @@ p.clear{
 .date_img{
     width: 300px;
     height: 100px;
-    margin: 20px auto 0 auto;
+    margin: 50px auto 0 auto;
     text-align: center;
+}
+.modif{
+    margin: 15px;
 }
