@@ -1,0 +1,9 @@
+<?php
+	$config=array();
+
+	$config['img_par_page']=5;
+	$config['dossier']='images/';
+
+	$config['dsn']='mysql:dbname=nom utilisateur a changer;host=localhost';
+	$config['username']='nom utilisateur a changer';
+	$config['password']='password a changer';

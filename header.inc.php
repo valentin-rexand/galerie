@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html>
 <head>
@@ -8,4 +11,5 @@
 	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
-	<h1>Ma galerie - <?php echo $titre;?></h1>
+	<div id="wrapper">
+		<h1>Ma galerie - <?php echo $titre;?></h1>
