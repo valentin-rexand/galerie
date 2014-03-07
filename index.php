@@ -58,6 +58,8 @@
 		<button id="mon_bouton">clic</button>
 	</div>
 
+	<input type="hidden" class="inputnumpage" value="<?php echo (htmlspecialchars($_GET['page'])) ?>">
+
 <?php
 
 	require_once('footer.inc.php');

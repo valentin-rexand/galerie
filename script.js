@@ -9,4 +9,11 @@ $(function(){
 		});
 	});
 
+	var numpage=$('.inputnumpage').attr('value');
+	console.log(numpage);
+
+	/*$('.next').click(function(e){
+		e.preventDefault();
+		console.log(e);
+	});*/
 });
