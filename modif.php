@@ -18,16 +18,14 @@
 
 	<form method="post">
 		<label for="nom">Nom de l'image<span class="star"> *</span></label>
-		<p><input type="text" id="nom" name="nom" value="<?php if(isset($_POST['nom']))
-		{ $nom=htmlspecialchars($_POST['nom']); echo $nom;}else{ echo '';}?>"></p>
+		<p><input type="text" id="nom" name="nom" value="<?php if(isset($_POST['nom'])){ $nom=htmlspecialchars($_POST['nom']); echo $nom;}else{ echo $ligne_nom;}?>"></p>
 
 		<label for="auteur">Auteur<span class="star"> *</span></label>
 		<p><input type="text" id="auteur" name="auteur" value="<?php if(isset($_POST['auteur'])){ $auteur=htmlspecialchars($_POST['auteur']); echo $auteur;}
-		else{ echo '';}?>"></p>
+		else{ echo $ligne_auteur;}?>"></p>
 
 		<label for="description">Description<span class="star"> *</span></label>
-		<p><textarea name="description" id="description" cols="100" rows="20">
-			<?php if(isset($_POST['description'])){ $description=htmlspecialchars($_POST['description']);echo $description;}else{ echo '';}?></textarea></p>
+		<p><textarea name="description" id="description" cols="100" rows="20"><?php if(isset($_POST['description'])){ $description=htmlspecialchars($_POST['description']);echo $description;}else{ echo $ligne_description;}?></textarea></p>
 		<p><input type="submit" value="valider"></p>
 	</form>
 
@@ -38,10 +36,8 @@
 			(!empty($_POST['description']))){
 
 			//modification du contenu par l'utilisateur
-			$id=$db->quote($_GET['id']);
-			$query="UPDATE galerie_php SET nom=".$db->quote($_POST['nom']).", auteur=".
-			$db->quote($_POST['auteur']).", description=".$db->quote($_POST['description']).",
-			 `date`=NOW() WHERE id=".$id;
+			$id=$db->quote(htmlspecialchars($_GET['id']));
+			$query="UPDATE galerie_php SET nom=".$db->quote(htmlspecialchars($_POST['nom'])).", auteur=".$db->quote(htmlspecialchars($_POST['auteur'])).", description=".$db->quote(htmlspecialchars($_POST['description'])).", `date`=NOW() WHERE id=".$id;
 			$resultat=$db->exec($query);
 
 			echo '<p>Les informations ont été modifiées</p>';
