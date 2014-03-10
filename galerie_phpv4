@@ -1,7 +1,11 @@
 *Galerie dynamique avec Ajax :
-*
-récupération de la page suivante :
-	-function->on lui donne comme argument le num de la page actuelle et renvoie 		 la page suivante? (if pour regrouper next, prev,first et last en 2eme arg?).
+
 
 évènement sur click du bouton suivant : change de page pour la suivante ->$numpage+1?
 effet Move/fade au changement de page
+
+****************************************************************************************
+
+Créer un div .gallery vide -> jquery : $('<div/>')
+y insérer les nouvelles images avec requète ->joint par ajax
+clic sur bt suivant, affiche le nouveau div .gallery rempli à la place de l'ancien, et remplacement des lien sur les boutons -> 
