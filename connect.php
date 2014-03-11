@@ -3,10 +3,7 @@
 	require_once('header.inc.php');
 	require_once('config.php');
 	require_once('connexion.php');
-?>
 
-
-<?php
 	if(isset($_SESSION['admin'])){
 		echo '<p>Bonjour Admin<br/><a href="index.php">Accueil</a></p>';
 	} else {

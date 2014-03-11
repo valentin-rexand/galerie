@@ -1,0 +1,22 @@
+**Formulaire d'inscription
+	-lien sur index.php vers inscription
+	-sur page inscription, formulaire avec champs :
+		-Login
+		-password
+		-mail
+	-vérification des champs rempli
+	-création hash sha512 pour le password
+	-création d'une session pour l'utilisateur : session_start()
+	-modification de l'utilisateur admin:
+		-ajout login, email
+
+**Connexion pour l'utilisateur créé
+	-rajout du champs login sur la page de connexion
+	-vérification de l'existence de l'utilisateur à la connexion
+	-$_SESSION['user']
+
+**envoi d'image par l'utilisateur
+	-sur la page formulaire d'ajout, création d'une requète sql pour l'utilisateur en plus de celle pour la session admin
+
+**modification champs et suppression images pour celles de l'utilisateur
+	-accès aux liens de modification et suppression pour les images appartenant à l'utilisateur

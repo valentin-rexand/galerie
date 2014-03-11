@@ -1,2 +1,3 @@
-importer 3wa.sql dans phpmyadmin.
+importer 3wa.sql dans phpmyadmin, création de la table galerie_php et user.
+intégrer le(s) ALTER TABLE.
 Changer les informations de connexion de config.php.exemple et renommer en config.php
