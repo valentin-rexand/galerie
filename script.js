@@ -8,32 +8,31 @@ $(function(){
 			par.appendTo('.date_img');
 		});
 	});
-/*
-	var numpage=$('.inputnumpage').attr('value');
-	console.log(numpage);
-*/
-/*
+
 	$('.next').click(function(e){
 		e.preventDefault();
-		$.get('ajax.php', {action: 'next'}, function(data) {
-			console.log(data);
-			//$(this).attr(href);
+		var num_page = $('.inputnumpage').attr('value');
+		num_page=parseInt(num_page);
+
+		$.get('ajax.php', {action: 'nav', page:num_page+1}, function(data){
+			var gallery=$('<div/>', {class: 'gallery'});
+				var div=$('<div/>', {class: 'image'}).appendTo(gallery);
+			for (var i in data['images']){
+
+				var lien=$('<a/>', {href: 'image.php?id='+data['images'][i]['id']+'&page='+(num_page+1)});
+				lien.appendTo(div);
+
+				var img=$('<img/>', {src: 'images/'+data['images'][i]['nom_fichier'], width:'150', alt: data['images'][i]['nom']});
+				img.appendTo(lien);
+			}
+			$('.gallery').replaceWith(gallery);
 		});
-	})
-	$('.first').click(function(e){
-		e.preventDefault();
-		$.get('ajax.php', {action: 'first'}, function(data){
-			console.log(data);
-			$(this).attr("href");
-		})
-	})*/
-	$('.next').click(function(e){
-		e.preventDefault();
-		//$('.gallery').hide();
-		$.get('ajax.php', {action: 'next'}, function(data){
-			var gallery=$('.gallery').replaceWith('<div/>', {class: 'gallery'});
-			console.log(data);
-		})
-		//$('.gallery').show();
-	})
+		//découpe du href pour le bt next
+		var btnext=$('.next').attr('href');
+		btnext=btnext.split("=");
+		console.log(btnext[1]);
+		$('.next').attr('href',btnext[0]+"="+(parseInt(btnext[1])+1));
+
+		var val_getpage=$('.inputnumpage').attr('value', num_page+1);
+	});
 });
