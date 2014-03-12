@@ -6,9 +6,8 @@
 
 	if((isset($_POST['login'])) && (!empty($_POST['login'])) && (isset($_POST['password'])) && (!empty($_POST['password'])) && (isset($_POST['mail'])) && (!empty($_POST['mail'])) && ($_POST['password']===$_POST['passwordconfirm'])){
 
-		$sel='3a890dcdb';
 		$login=htmlspecialchars($_POST['login']);
-		$password=hash('sha512', $sel.htmlspecialchars($_POST['password']));
+		$password=hash('sha512', $config['sel'].htmlspecialchars($_POST['password']));
 		$email=htmlspecialchars($_POST['mail']);
 
 		//vérification de la non-existence du login et email rentré, dans la base de donné

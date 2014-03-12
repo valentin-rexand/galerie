@@ -21,7 +21,7 @@
 	$titre='accueil - page'.($numpage+1);
 	require_once('header.inc.php');
 
-	if(!isset($_SESSION['admin'])&&(!isset($_SESSION['user']))){
+	if(!isset($_SESSION['user'])){
 		echo'<p><a href="connect.php" class="buttonco">Se connecter</a></p>';
 		echo'<p><a href="inscription.php">s\'inscrire</a></p>';
 	} else {
