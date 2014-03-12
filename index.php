@@ -25,6 +25,7 @@
 		echo'<p><a href="connect.php" class="buttonco">Se connecter</a></p>';
 		echo'<p><a href="inscription.php">s\'inscrire</a></p>';
 	} else {
+		echo '<p>'.$_SESSION['user']['login'].' - <a href="img_user.php?user='.$_SESSION['user']['id'].'">Vos images</a></p>';
 		echo'<p><a href="deco.php?deco=1" class="buttonco">Se déconnecter</a></p>';
 		echo '<p><a href="form_img.php">Ajouter une image</a></p>';
 	}
