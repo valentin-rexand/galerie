@@ -37,14 +37,7 @@
 
 
 	echo '<p class="clear">'.PHP_EOL;
-	if ($current_page>0){//($current_page+1)-1 donc $current_page (ce que croit l'utilisateur $current_page+1 et la page réelle -1)
-		echo '<a href="index.php?page=1" class="first"><- first</a>'.PHP_EOL;
-		echo '<a href="index.php?page='.$current_page.'" class="previous">Précédent</a>'.PHP_EOL;
-	}
-	if($current_page<$nbrpage-1){//$current_page+1 pr ce que l'on fait mais comme utilisateur sur page +1 ça donne +2
-		echo '<a href="index.php?page='.($current_page+2).'" class="next">Suivant</a>'.PHP_EOL;
-		echo '<a href="index.php?page='.$nbrpage.'" class="last">last -></a>'.PHP_EOL;
-	}
+	$navig=navig($current_page, $nbrpage);
 	echo '</p>'.PHP_EOL;
 ?>
 	<div class="date_img">
@@ -55,5 +48,10 @@
 	<input type="hidden" class="inputnumpage" value="<?php echo (htmlspecialchars($_GET['page'])) ?>">
 
 <?php
-
 	require_once('footer.inc.php');
+
+	/*
+
+	
+
+	*/

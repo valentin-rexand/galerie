@@ -9,7 +9,7 @@ $(function(){
 		});
 	});
 
-	// TODO : ALLEGER LE CODE ET LES REPETITIONS --> bt last, prev et autre, bt de navigations a réjouter : chiffres de pages jusqua nbpage
+	// TODO : ALLEGER LE CODE ET LES REPETITIONS --> bt last, prev et autre
 	function navigation(num_page){
 		var gallery=$('<div/>', {class: 'gallery'});
 		var div=$('<div/>', {class: 'image'}).appendTo(gallery);

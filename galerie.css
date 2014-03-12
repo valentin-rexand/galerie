@@ -52,26 +52,6 @@ p.clear{
     width: 100%;
     position: relative;
 }
-.first{
-    position: absolute;
-    left: 0;
-    margin-left: 15px;
-    color: white;
-}
-.last{
-    position: absolute;
-    right: 0;
-    margin-right: 15px;
-    color: white;
-}
-.previous{
-    position: absolute;
-    left: 40%;
-}
-.next{
-    position: absolute;
-    right: 40%;
-}
 .page_img{
     text-align: center;
 }
@@ -83,4 +63,10 @@ p.clear{
 }
 .modif{
     margin: 15px;
+}
+.nbr_nav{
+    text-align: center;
+}
+.nbr_nav a{
+    padding: 5px;
 }
