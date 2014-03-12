@@ -11,16 +11,29 @@
 		$password=hash('sha512', $sel.htmlspecialchars($_POST['password']));
 		$email=htmlspecialchars($_POST['mail']);
 
-		$query="INSERT INTO user (`login`, `password`, `mail`)
-		VALUES (".$db->quote($login).", ".$db->quote($password).", ".$db->quote($email).")";
-		$resultat=$db->exec($query);
+		//vérification de la non-existence du login et email rentré, dans la base de donné
+		$query="SELECT login, mail FROM user";
+		$resultat=$db->query($query);
+		$ligne=$resultat->fetch();
 
-		if($resultat==false){
-			echo '<p>erreur de création de votre compte</p>';
-		} else {
-			echo '<p>Votre compte utilisateur a été créé</p>';
-			echo '<p><a href="index.php">retour galerie</a></p>';
-		}
+			if($login==$ligne['login']){
+				echo '<p>Ce nom d\'utilisateur existe déjà</p>';
+				echo '<p><a href="inscription.php">annuler</a></p>';
+			} elseif ($email==$ligne['mail']){
+				echo '<p>Cet adresse email est déjà utilisée</p>';
+				echo '<p><a href="inscription.php">annuler</a></p>';
+			} else {
+				$query="INSERT INTO user (`login`, `password`, `mail`)
+				VALUES (".$db->quote($login).", ".$db->quote($password).", ".$db->quote($email).")";
+				$resultat=$db->exec($query);
+
+				if($resultat==false){
+					echo '<p>erreur de création de votre compte</p>';
+				} else {
+					echo '<p>Votre compte utilisateur a été créé</p>';
+					echo '<p><a href="index.php">retour galerie</a></p>';
+				}
+			}
 	} else {
 ?>
 <form method="post">
