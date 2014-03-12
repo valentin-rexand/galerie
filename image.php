@@ -16,14 +16,22 @@
 			echo '<p>'.$ligne['description'].'</p>';
 		}
 		echo '</div>'.PHP_EOL;
-	}
 
-	if(isset($_GET['page'])){
-		$page=htmlspecialchars($_GET['page']);
-	}
-	if(isset($_SESSION['admin'])){
-		echo'<p><a href="modif.php?id='.$id.'&page='.$page.'" class="modif">Modifier</a><a href="suppr.php?id='.$id.'&page='.$page.'">Supprimer</a></p>';
+		if(isset($_GET['page'])){
+			$page=htmlspecialchars($_GET['page']);
+		}
+
+		if(isset($_SESSION['user'])){
+
+		$query="SELECT auteur FROM galerie_php WHERE id=".$db->quote($id);
+		$resultat=$db->query($query);
+		$ligne=$resultat->fetch();
+
+		if($ligne['auteur']==$_SESSION['user']['id']){
+			echo'<p><a href="modif.php?id='.$id.'&page='.$page.'" class="modif">Modifier</a><a href="suppr.php?id='.$id.'&page='.$page.'">Supprimer</a></p>';
+		}
 	}
 	echo '<p><a href="index.php?page='.$page.'">&lt;&ndash; Retour galerie</a></p>';
+	}
 	
 	require_once('footer.inc.php');
