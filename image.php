@@ -3,13 +3,13 @@
 	require_once('header.inc.php');
 	require_once('config.php');
 	require_once('connexion.php');
+	require_once('function.inc.php');
 
 	if(isset($_GET['id'])){
 		$id=htmlspecialchars($_GET['id']);
-		$sql="SELECT * FROM galerie_php WHERE id=".$db->quote($id);
-		$resultat=$db->query($sql);
+		$image=get_image($id);
 		echo '<div class="page_img">'.PHP_EOL;
-		foreach ($resultat as $ligne) {
+		foreach ($image as $ligne) {
 			echo '<h2>'.$ligne['nom'].'</h2>';
 			echo '<p>'.$ligne['date'].' - '.$ligne['auteur'].'</p>';
 			echo '<img src="images/'.$ligne['nom_fichier'].'" alt="Image '.$ligne['nom'].'"/>';

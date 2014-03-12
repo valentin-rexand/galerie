@@ -17,13 +17,8 @@ if(isset($_GET['action'])){
 	case 'nav':
 		global$db;
 		global$config;
-		//utiliser fonction get-image()?
 		$current_page=$db->quote($_GET['page']-1);
-		/* $result['images']=get_images($current_page)->fetchAll(); */
-		$query="SELECT id, nom, nom_fichier FROM galerie_php ORDER BY `date` DESC LIMIT ".($current_page*$config['img_par_page']).','.$config['img_par_page'];
-		$resultat=$db->query($query);
-		$result['images'] = $resultat->fetchAll();
-
+		$result['images']=get_image($current_page)->fetchAll();
 	break;
 	}
 }

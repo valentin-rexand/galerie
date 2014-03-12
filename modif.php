@@ -3,12 +3,12 @@
 	require_once('header.inc.php');
 	require_once('config.php');
 	require_once('connexion.php');
+	require_once('function.inc.php');
 
 	if(isset($_GET['id'])){
-		$id=$db->quote($_GET['id']);
-		$requete="SELECT * FROM galerie_php WHERE id=".$id;
-		$resultat=$db->query($requete);
-		foreach($resultat as $ligne){
+		$id=htmlspecialchars($_GET['id']);
+		$image=get_image($id);
+		foreach($image as $ligne){
 			$ligne_nom=$ligne['nom'];
 			$ligne_auteur=$ligne ['auteur'];
 			$ligne_description=$ligne ['description'];
@@ -36,10 +36,11 @@
 			(!empty($_POST['description']))){
 
 			//modification du contenu par l'utilisateur
-			$id=$db->quote(htmlspecialchars($_GET['id']));
-			$query="UPDATE galerie_php SET nom=".$db->quote(htmlspecialchars($_POST['nom'])).", auteur=".$db->quote(htmlspecialchars($_POST['auteur'])).", description=".$db->quote(htmlspecialchars($_POST['description'])).", `date`=NOW() WHERE id=".$id;
-			$resultat=$db->exec($query);
-
+			$id=htmlspecialchars($_GET['id']);
+			$nom=htmlspecialchars($_POST['nom']);
+			$auteur=htmlspecialchars($_POST['auteur']);
+			$description=htmlspecialchars($_POST['description']);
+			$succes_update=update_image($nom, $auteur, $description, $id);
 			echo '<p>Les informations ont été modifiées</p>';
 		} else {
 			echo '<p>Veuillez modifier les champs<span class="star"> *</span></p>';

@@ -26,7 +26,7 @@
 
 	echo '<div class="gallery">'.PHP_EOL;
 
-	$images=get_image($current_page);
+	$images=get_image_by_page($current_page);
 
 	echo '<div class="image">'.PHP_EOL;
 	foreach ($images as $ligne) {
