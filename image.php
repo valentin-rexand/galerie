@@ -9,7 +9,7 @@
 
 		$sql="SELECT * FROM galerie_php JOIN user ON galerie_php.auteur=user.id WHERE galerie_php.id=".$db->quote($id);
 		$resultat=$db->query($sql);
-		
+
 		echo '<div class="page_img">'.PHP_EOL;
 		foreach ($resultat as $ligne) {
 			echo '<h2>'.$ligne['nom'].'</h2>';
@@ -29,7 +29,7 @@
 		$resultat=$db->query($query);
 		$ligne=$resultat->fetch();
 
-		if($ligne['auteur']==$_SESSION['user']['id']){
+		if(($ligne['auteur']==$_SESSION['user']['id']) || $_SESSION['user']['id']==0){
 			echo'<p><a href="modif.php?id='.$id.'&page='.$page.'" class="modif">Modifier</a><a href="suppr.php?id='.$id.'&page='.$page.'">Supprimer</a></p>';
 		}
 	}

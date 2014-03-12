@@ -23,7 +23,7 @@
 		} else {
 			if((isset($_POST['mdp'])) && (isset($_POST['login']))){
 				$login=htmlspecialchars($_POST['login']);
-				$mdp=hash('sha512', $config['sel'].htmlspecialchars($_POST['login']));
+				$mdp=hash('sha512', $config['sel'].htmlspecialchars($_POST['mdp']));
 				if($user = connect_user($login, $mdp)){
 					$_SESSION['user']=$user;
 					echo '<p>Bonjour '.$login.'<br/><a href="index.php">Accueil</a></p>';
