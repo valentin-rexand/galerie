@@ -10,7 +10,6 @@
 		$resultat=$db->query($requete);
 		foreach($resultat as $ligne){
 			$ligne_nom=$ligne['nom'];
-			$ligne_auteur=$ligne ['auteur'];
 			$ligne_description=$ligne ['description'];
 		}
 	}
@@ -20,24 +19,18 @@
 		<label for="nom">Nom de l'image<span class="star"> *</span></label>
 		<p><input type="text" id="nom" name="nom" value="<?php if(isset($_POST['nom'])){ $nom=htmlspecialchars($_POST['nom']); echo $nom;}else{ echo $ligne_nom;}?>"></p>
 
-		<label for="auteur">Auteur<span class="star"> *</span></label>
-		<p><input type="text" id="auteur" name="auteur" value="<?php if(isset($_POST['auteur'])){ $auteur=htmlspecialchars($_POST['auteur']); echo $auteur;}
-		else{ echo $ligne_auteur;}?>"></p>
-
 		<label for="description">Description<span class="star"> *</span></label>
 		<p><textarea name="description" id="description" cols="100" rows="20"><?php if(isset($_POST['description'])){ $description=htmlspecialchars($_POST['description']);echo $description;}else{ echo $ligne_description;}?></textarea></p>
 		<p><input type="submit" value="valider"></p>
 	</form>
 
 <?php
-	if(isset($_SESSION['admin'])){
-		if(isset($_POST['nom']) && (!empty($_POST['nom'])) && (isset($_POST['auteur'])) 
-			&& (!empty($_POST['auteur'])) && (isset($_POST['description'])) && 
-			(!empty($_POST['description']))){
+	if(isset($_SESSION['user'])){
+		if(isset($_POST['nom']) && (!empty($_POST['nom'])) && (isset($_POST['description'])) && (!empty($_POST['description']))){
 
 			//modification du contenu par l'utilisateur
 			$id=$db->quote(htmlspecialchars($_GET['id']));
-			$query="UPDATE galerie_php SET nom=".$db->quote(htmlspecialchars($_POST['nom'])).", auteur=".$db->quote(htmlspecialchars($_POST['auteur'])).", description=".$db->quote(htmlspecialchars($_POST['description'])).", `date`=NOW() WHERE id=".$id;
+			$query="UPDATE galerie_php SET nom=".$db->quote(htmlspecialchars($_POST['nom'])).", description=".$db->quote(htmlspecialchars($_POST['description'])).", `date`=NOW() WHERE id=".$id;
 			$resultat=$db->exec($query);
 
 			echo '<p>Les informations ont été modifiées</p>';
