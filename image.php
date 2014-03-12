@@ -6,12 +6,14 @@
 
 	if(isset($_GET['id'])){
 		$id=htmlspecialchars($_GET['id']);
-		$sql="SELECT * FROM galerie_php WHERE id=".$db->quote($id);
+
+		$sql="SELECT * FROM galerie_php JOIN user ON galerie_php.auteur=user.id WHERE galerie_php.id=".$db->quote($id);
 		$resultat=$db->query($sql);
+		
 		echo '<div class="page_img">'.PHP_EOL;
 		foreach ($resultat as $ligne) {
 			echo '<h2>'.$ligne['nom'].'</h2>';
-			echo '<p>'.$ligne['date'].' - '.$ligne['auteur'].'</p>';
+			echo '<p>'.$ligne['date'].' - '.$ligne['login'].'</p>';
 			echo '<img src="images/'.$ligne['nom_fichier'].'" alt="Image '.$ligne['nom'].'"/>';
 			echo '<p>'.$ligne['description'].'</p>';
 		}
