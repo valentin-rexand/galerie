@@ -9,6 +9,7 @@ $(function(){
 		});
 	});
 
+	// TODO : ALLEGER LE CODE ET LES REPETITIONS --> bt last, prev et autre
 	function navigation(num_page){
 		var gallery=$('<div/>', {class: 'gallery'});
 		var div=$('<div/>', {class: 'image'}).appendTo(gallery);
@@ -43,6 +44,16 @@ $(function(){
 
 		//incrémentation du numéro de page dans l'input hidden
 		var val_getpage=$('.inputnumpage').attr('value', num_page);
+
+		var btlast=$('.last').attr('href');
+		btlast=btlast.split("=");
+		if(num_page>1){
+			$('.first').show();
+			$('.previous').show();
+		} else if(num_page=parseInt(btlast[1])){
+			$('.next').hide();
+			$('.last').hide();
+		}
 	});
 
 	$('.previous').click(function(e){
@@ -55,14 +66,54 @@ $(function(){
 		btnext=btnext.split("=");
 		$('.next').attr('href', btnext[0]+"="+(parseInt(btnext[1])-1));
 
+		var val_getpage=$('.inputnumpage').attr('value', num_page);
+
+		if(num_page==1){
+			$('.first').hide();
+			$('.previous').hide();
+		} else {
+			$('.next').show();
+			$('.last').show();
+		}
+
 		var btprev=$('.previous').attr('href');
 		btprev=btprev.split("=");
 		$('.previous').attr('href', btprev[0]+"="+(parseInt(btprev[1])-1));
 
-		var val_getpage=$('.inputnumpage').attr('value', num_page);
 	});
 
 	$('.first').click(function(e){
 		e.preventDefault();
+		num_page=1;
+		navigation(num_page);
+
+		var btnext=$('.next').attr('href');
+		btnext=btnext.split("=");
+		$('.next').attr('href', btnext[0]+"="+2);
+		var val_getpage=$('.inputnumpage').attr('value', "1");
+		$('.first').hide();
+		$('.previous').hide();
+		$('.next').show();
+		$('.last').show();
 	});
+
+	$('.last').click(function(e){
+		e.preventDefault();
+		var btlast=$('.last').attr('href');
+		btlast=btlast.split("=");
+		num_page=parseInt(btlast[1]);
+
+		navigation(num_page);
+
+		var val_getpage=$('.inputnumpage').attr('value', num_page);
+		$('.next').hide();
+		$('.last').hide();
+		$('.previous').show();
+		$('.first').show();
+		var btprev=$('.previous').attr('href');
+		btprev=btprev.split("=");
+		$('.previous').attr('href', btprev[0]+"="+(num_page-1));
+
+	});
+
 });
