@@ -10,15 +10,20 @@
 		if(isset($_GET['user'])){
 			$nbuser=htmlspecialchars($_GET['user']);
 			$query="SELECT * FROM galerie_php WHERE auteur=".$db->quote($nbuser);
-			$resultat=$db->query($query);
+			$resultat=$db->query($query)->fetchAll();
 
-			echo '<div class="gallery">'.PHP_EOL;
-			echo '<div class="image">'.PHP_EOL;
-			foreach ($resultat as $ligne) {
-				echo '<a href="image.php?id='.$ligne['id'].'"><img src="images/'.$ligne['nom_fichier'].'" alt="'.$ligne['nom'].'" title="'.$ligne['nom'].'" width="150"/></a>';
+			if (count($resultat)!==0){
+				echo '<div class="gallery">'.PHP_EOL;
+				echo '<div class="image">'.PHP_EOL;
+				foreach ($resultat as $ligne) {
+					echo '<a href="image.php?id='.$ligne['id'].'"><img src="images/'.$ligne['nom_fichier'].'" alt="'.$ligne['nom'].'" title="'.$ligne['nom'].'" width="150"/></a>';
+				}
+				echo '</div>'.PHP_EOL;
+				echo '</div>'.PHP_EOL;
+			} else {
+				echo '<p>Vous n\'avez ajouté aucune image</p>';
+				echo '<p><a href="form_img.php">Ajouter une image</a></p>';
 			}
-			echo '</div>'.PHP_EOL;
-			echo '</div>'.PHP_EOL;
 		} else {
 			$_GET['user']=$_SESSION['user']['id'];
 			$nbuser=htmlspecialchars($_GET['user']);
