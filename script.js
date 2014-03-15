@@ -14,18 +14,23 @@ $(function(){
 
 	function navigation(num_page){
 		$.get('ajax.php', {action: 'nav', page:num_page}, function(data){
-		var gallery=$('<div/>', {class: 'gallery'});
-		var div=$('<div/>', {class: 'image'}).appendTo(gallery);
+		var old_gallery = $('.gallery');
+		var new_gallery=$('<div/>', {class: 'gallery'});
+
+		var div=$('<div/>', {class: 'image'}).appendTo(new_gallery);
 		for (var i in data['images']){
 			var lien=$('<a/>', {href: 'image.php?id='+data['images'][i]['id']+'&page='+(num_page)});
 			lien.appendTo(div);
 			var img=$('<img/>', {src: 'images/'+data['images'][i]['nom_fichier'], width:'150', alt: data['images'][i]['nom']});
 			img.appendTo(lien);
-			}
-		$('.gallery').replaceWith(gallery);
+		}
+		old_gallery.replaceWith(new_gallery);
+		return new_gallery;
+		
 		});
 	}
 
+	
 
 	var num_page = $('.inputnumpage').attr('value');
 
@@ -43,8 +48,7 @@ $(function(){
 	$('.next').click(function(e){
 		e.preventDefault();
 		num_page=(parseInt(num_page))+1;
-
-
+		
 		navigation(num_page);
 		
 		$('.next').attr('href',btnext[0]+"="+(parseInt(btnext[1])+1));
