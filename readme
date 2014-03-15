@@ -1,3 +1,10 @@
-importer 3wa.sql dans phpmyadmin, création de la table galerie_php et user.
-intégrer le(s) ALTER TABLE.
-Changer les informations de connexion de config.php.exemple et renommer en config.php
+/*Consignes pour la création du site
+ *
+ *importer 3wa.sql dans phpmyadmin, création de la table galerie_php et user.
+ *intégrer le(s) ALTER TABLE.
+ *Changer les informations de connexion de config.php.exemple et renommer en config.php
+ *Changer les propriétés du dossier /images en création et suppression de fichier pour le transfert des
+ *images upload à l'interieur
+ *Mettre dans le dossier images les première images à envoyer en base de donnée et utiliser le script
+ *d'insertion "script/script_insert.php" pour l'execution.
+ */

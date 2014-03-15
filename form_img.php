@@ -4,6 +4,7 @@
 	require_once('header.inc.php');
 	require_once('config.php');
 	require_once('connexion.php');
+	require_once('function.inc.php');
 ?>
 
 	<form enctype="multipart/form-data" method="post">
@@ -21,19 +22,29 @@
 		 (!empty($_POST['description'])) && (isset($_FILES['image'])) && 
 		 (!empty($_FILES['image']['name']))){
 			
-			$nom=$db->quote(htmlspecialchars($_POST['nom']));
-			$descript=$db->quote(htmlspecialchars($_POST['description']));
-			$files=$db->quote(htmlspecialchars($_FILES['image']['name']));
+			$nom=htmlspecialchars($_POST['nom']);
+			$descript=htmlspecialchars($_POST['description']);
+			$files=htmlspecialchars($_FILES['image']['name']);
 
 			// vérification du format de l'image soumise
 			if((stripos($_FILES['image']['type'], 'jpg') || (stripos($_FILES['image']['type'], 'jpeg')) || (stripos($_FILES['image']['type'], 'png')) || (stripos($_FILES['image']['type'], 'gif')) || (stripos($_FILES['image']['type'], 'tiff'))) && (stripos($_FILES['image']['name'], ".php")===false)){
 
-				$query="INSERT INTO galerie_php (nom, auteur, description, `date`, nom_fichier) 
-				VALUES (".$nom.",".$_SESSION['user']['id'].",".$descript.",NOW(),".$files.")";
-				$resultat=$db->exec($query);
+				echo '1 - '.$FILES['image']['type'].PHP_EOL;
+				echo '2 - '.$FILES['image']['name'].PHP_EOL;
+				echo $_SESSION['user']['login'];
+				$succes_insert=insert_img($nom, $descript, $files, $_SESSION['user']['login']);
 
-				move_uploaded_file($_FILES['image']['tmp_name'], "images/".$_FILES['image']['name']);
-				echo '<p>L\'image a été envoyée</p>';
+				if($succes_insert){
+					move_uploaded_file($_FILES['image']['tmp_name'], "images/".$_FILES['image']['name']);
+
+					echo '3 - '.$FILES['image']['tmp_name'].PHP_EOL;
+					echo '4 - '.$FILES['image']['name'].PHP_EOL;
+					echo '5 - '."images/".$_FILES['image']['name'];
+
+					echo '<p>L\'image a été envoyée</p>';
+				} else {
+					echo '<p>une erreur est survenue</p>';
+				}
 			} else {
 				echo '<p>Le format de l\'image est incorrect</p>';
 			}

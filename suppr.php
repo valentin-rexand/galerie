@@ -3,6 +3,7 @@
 	require_once('header.inc.php');
 	require_once('config.php');
 	require_once('connexion.php');
+	require_once('function.inc.php');
 
 	if(isset($_GET['page'])){
 		$page=htmlspecialchars($_GET['page']);
@@ -10,17 +11,22 @@
 	if(isset($_SESSION['admin'])){
 		if (isset($_GET['id'])){
 			if(isset($_GET['confirmation'])){
-				$id=$db->quote($_GET['id']);
-				$query="SELECT nom_fichier FROM galerie_php where id=".$id;
-				$result=$db->query($query);
-				$nom_fichier=$result->fetchColumn();
-				if(file_exists("images/".$nom_fichier)){
-					unlink("images/".$nom_fichier);
-					$supp="DELETE FROM galerie_php WHERE id=".$id."LIMIT 1";
-					$confirm=$db->exec($supp);
+
+				$id=htmlspecialchars($_GET['id']);
+				$image=get_image($id);
+				$nom_fichier=$image->fetch();
+
+				if(file_exists("images/".$nom_fichier['nom_fichier'])){
+					unlink("images/".$nom_fichier['nom_fichier']);
+					
+					$confirm=delete_image($id);
+
 					if($confirm){
 						echo '<p>L\'article a bien été supprimé</p>';
 						echo '<p><a href="index.php?page='.$page.'">retour galerie</a></p>';
+					} else {
+						echo '<p>Le fichier n\'a pas pu être supprimé</p>';
+						echo '<p><a href="image.php?id='.$id.'&page='.$page.'">précédent</a></p>';
 					}
 				} else {
 					echo '<p>le fichier n\'existe pas !</p>';

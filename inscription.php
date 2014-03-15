@@ -3,30 +3,34 @@
 	require_once('header.inc.php');
 	require_once('config.php');
 	require_once('connexion.php');
+	require_once('function.inc.php');
 
 	if((isset($_POST['login'])) && (!empty($_POST['login'])) && (isset($_POST['password'])) && (!empty($_POST['password'])) && (isset($_POST['mail'])) && (!empty($_POST['mail'])) && ($_POST['password']===$_POST['passwordconfirm'])){
 
-		$login=htmlspecialchars($_POST['login']);
-		$password=hash('sha512', $config['sel'].htmlspecialchars($_POST['password']));
-		$email=htmlspecialchars($_POST['mail']);
+		$login=$db->quote(htmlspecialchars($_POST['login']));
+		$password=$db->quote(hash('sha512', $config['sel'].htmlspecialchars($_POST['password'])));
+		$email=$db->quote(htmlspecialchars($_POST['mail']));
 
-		//vérification de la non-existence du login et email rentré, dans la base de donné
-		$query="SELECT login, mail FROM user";
+		//vérification de la non-existence du login rentré, dans la base de donné
+		$query="SELECT id FROM user WHERE login=".$login;
 		$resultat=$db->query($query);
-		$ligne=$resultat->fetch();
+		$ligne=$resultat->fetchColumn();
 
-			if($login==$ligne['login']){
+		//vérification de la non-existence du mail rentré, dans la base de donné
+		$requete="SELECT id FROM user WHERE mail=".$email;
+		$result=$db->query($requete);
+		$ligne2=$result->fetchColumn();
+
+			if($ligne){
 				echo '<p>Ce nom d\'utilisateur existe déjà</p>';
 				echo '<p><a href="inscription.php">annuler</a></p>';
-			} elseif ($email==$ligne['mail']){
+			} elseif ($ligne2){
 				echo '<p>Cet adresse email est déjà utilisée</p>';
 				echo '<p><a href="inscription.php">annuler</a></p>';
 			} else {
-				$query="INSERT INTO user (`login`, `password`, `mail`)
-				VALUES (".$db->quote($login).", ".$db->quote($password).", ".$db->quote($email).")";
-				$resultat=$db->exec($query);
+				$succes_inscript=user_inscript($login, $password, $email);
 
-				if($resultat==false){
+				if($succes_inscript==false){
 					echo '<p>erreur de création de votre compte</p>';
 				} else {
 					echo '<p>Votre compte utilisateur a été créé</p>';

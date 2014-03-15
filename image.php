@@ -3,6 +3,7 @@
 	require_once('header.inc.php');
 	require_once('config.php');
 	require_once('connexion.php');
+	require_once('function.inc.php');
 
 	if(isset($_GET['id'])){
 		$id=htmlspecialchars($_GET['id']);
@@ -25,9 +26,6 @@
 
 		if(isset($_SESSION['user'])){
 			echo '<p>'.$_SESSION['user']['login'].' - <a href="img_user.php?user='.$_SESSION['user']['id'].'">Vos images</a></p>';
-			$query="SELECT auteur FROM galerie_php WHERE id=".$db->quote($id);
-			$resultat=$db->query($query);
-			$ligne=$resultat->fetch();
 
 		if(($ligne['auteur']==$_SESSION['user']['id']) || $_SESSION['user']['id']==0){
 			echo'<p><a href="modif.php?id='.$id.'&page='.$page.'" class="modif">Modifier</a><a href="suppr.php?id='.$id.'&page='.$page.'">Supprimer</a></p>';
