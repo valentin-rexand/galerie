@@ -58,7 +58,7 @@
 		}
 		
 		for($i=1;$i<=$nbrpage;$i++){
-			echo'<a href="index.php?page='.$i.'">'.$i.'</a>';
+			echo'<a href="index.php?page='.$i.'" class="chiffrenav">'.$i.'</a>';
 		}
 		
 		if($current_page<$nbrpage-1){//$current_page+1 pr ce que l'on fait mais comme utilisateur sur page +1 ça donne +2

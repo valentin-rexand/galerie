@@ -49,9 +49,3 @@
 
 <?php
 	require_once('footer.inc.php');
-
-	/*
-
-	
-
-	*/
