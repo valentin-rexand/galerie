@@ -22,7 +22,7 @@ h1{
 .gallery{
     width: 870px;
     height: auto;
-    position: absolute;
+    position: relative;
 }
 .gallery .image img{
     float: left;
@@ -40,8 +40,8 @@ h1{
     width: 172px;
 }
 p a {
-	text-decoration: none;
-	color: orange;
+    text-decoration: none;
+    color: orange;
 }
 .clear{
     clear: both;
@@ -56,8 +56,7 @@ p a {
 p.clear{
     width: 100%;
     position: relative;
-}
-.page_img{
+}.page_img{
     text-align: center;
 }
 .date_img{

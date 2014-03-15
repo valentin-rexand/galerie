@@ -8,19 +8,19 @@
 	if(isset($_GET['page'])){
 		$page=htmlspecialchars($_GET['page']);
 	}
-	if(isset($_SESSION['admin'])){
+	if(isset($_SESSION['user'])){
 		if (isset($_GET['id'])){
 			if(isset($_GET['confirmation'])){
-	
+
 				$id=htmlspecialchars($_GET['id']);
 				$image=get_image($id);
 				$nom_fichier=$image->fetch();
-								
+
 				if(file_exists("images/".$nom_fichier['nom_fichier'])){
 					unlink("images/".$nom_fichier['nom_fichier']);
-
-					$confirm=delete_image($id);
 					
+					$confirm=delete_image($id);
+
 					if($confirm){
 						echo '<p>L\'article a bien été supprimé</p>';
 						echo '<p><a href="index.php?page='.$page.'">retour galerie</a></p>';

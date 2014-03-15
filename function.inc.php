@@ -17,11 +17,15 @@
 		return $nbrpage;
 	}
 
-	function insert_img($nom, $auteur, $descript, $files){
+	function insert_img($nom, $descript, $files, $login){
 		global$db;
 		global$config;
+		$sql="SELECT id FROM user WHERE login=".$db->quote($login);
+		$result=$db->query($sql);
+		$auteur=$result->fetchColumn();
+
 		$query="INSERT INTO ".$config['table_image']." (nom, auteur, description, `date`, nom_fichier) 
-				VALUES (".$db->quote($nom).", ".$db->quote($auteur).", ".$db->quote($descript).", NOW(), ".$db->quote($files).")";
+				VALUES (".$db->quote($nom).", ".$auteur.", ".$db->quote($descript).", NOW(), ".$db->quote($files).")";
 		$resultat=$db->exec($query);
 		return $resultat;
 	}
@@ -37,7 +41,7 @@
 	function update_image($nom, $auteur, $description, $id){
 		global$db;
 		global$config;
-		$query="UPDATE ".$config['table_image']." SET nom=".$db->quote($nom).", auteur=".$db->quote($auteur).", description=".$db->quote($description).", `date`=NOW() WHERE id=".$db->quote($id);
+		$query="UPDATE ".$config['table_image']." SET nom=".$db->quote($nom).", description=".$db->quote($description).", `date`=NOW() WHERE id=".$db->quote($id);
 		$resultat=$db->exec($query);
 		return $resultat;
 	}
@@ -66,4 +70,30 @@
 			echo '<a href="index.php?page='.$nbrpage.'" class="last">last -></a>'.PHP_EOL;
 		}
 		echo '</p>';
+	}
+
+	function user_inscript($login, $password, $email){
+		global$db;
+		global$config;
+		$query="INSERT INTO user (`login`, `password`, `mail`)
+				VALUES (".$login.", ".$password.", ".$email.")";
+				$resultat=$db->exec($query);
+		return $resultat;
+	}
+
+	// vérification de l'existence de l'utilisateur en base de donnée
+	function connect_user($login, $mdp){
+		global$db;
+		$query="SELECT id, login FROM user WHERE login=".$db->quote($login)." AND password=".$db->quote($mdp)." LIMIT 1";
+		$resultat=$db->query($query);
+		$ligne=$resultat->fetch();
+		return $ligne;
+	}
+
+	//vérification de la non-existence du login et email rentré, dans la base de donné
+	function user_exist(){
+		$query="SELECT login, mail FROM user";
+		$resultat=$db->query($query);
+		$ligne=$resultat->fetch();
+		return $ligne;
 	}
