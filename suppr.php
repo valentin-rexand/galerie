@@ -8,7 +8,7 @@
 	if(isset($_GET['page'])){
 		$page=htmlspecialchars($_GET['page']);
 	}
-	if(isset($_SESSION['admin'])){
+	if(isset($_SESSION['user'])){
 		if (isset($_GET['id'])){
 			if(isset($_GET['confirmation'])){
 
