@@ -15,9 +15,7 @@ if(isset($_GET['action'])){
 		$result['date']=$ligne;
 	break;
 	case 'nav':
-		$current_page=$db->quote($_GET['page']-1);
-		$result['images']=get_image_by_page($current_page)->fetchAll();
-		var_dump($result['images']);
+		$result['images']=get_image_by_page($_GET['page']-1)->fetchAll();
 	break;
 	}
 }
